@@ -18,10 +18,10 @@ use App\Http\Controllers\LogController;
 //     return view('welcome');
 // });
 
-Route::get('/', [LogController::class, 'index']);
+Route::get('/', [LogController::class, 'index'])->name('index');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/top', function () {
+    return view('top');
+})->name('top');
 
 require __DIR__ . '/auth.php';
