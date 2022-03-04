@@ -20,7 +20,7 @@
             @if (Route::has('login'))
             <div class="flex flex-col px-6 py-4">
                 @auth
-                <a href="{{ url('index') }}"
+                <a href="{{ url('/') }}"
                     class="w-96 text-center text-2xl text-white dark:text-gray-500 bg-amber-400 rounded-full p-3">HOME</a>
                 @else
                 @if (Route::has('register'))
