@@ -18,7 +18,8 @@ use App\Http\Controllers\LogController;
 //     return view('welcome');
 // });
 
-Route::get('/', [LogController::class, 'index'])->name('index');
+Route::get('/', [LogController::class, 'index'])->name('logs.index');
+Route::resource('/logs', LogController::class)->except(['index'])->middleware('auth');
 
 Route::get('/top', function () {
     return view('top');

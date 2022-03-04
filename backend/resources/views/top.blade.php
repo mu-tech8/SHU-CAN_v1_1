@@ -21,7 +21,7 @@
             <div class="flex flex-col px-6 py-4">
                 @auth
                 <a href="{{ url('/') }}"
-                    class="w-96 text-center text-2xl text-white dark:text-gray-500 bg-amber-400 rounded-full p-3">HOME</a>
+                    class="w-96 text-center text-2xl text-white dark:text-gray-500 bg-amber-400 rounded-full p-3 my-4">HOME</a>
                 @else
                 @if (Route::has('register'))
                 <a href="{{ route('register') }}"

@@ -10,6 +10,11 @@ class Log extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'learn_time',
+        'body',
+    ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo('App\User');
