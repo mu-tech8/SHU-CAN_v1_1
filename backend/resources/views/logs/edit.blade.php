@@ -6,16 +6,15 @@
         </div>
         <div class="col-span-3 ">
             <div class="rounded overflow-hidden shadow-lg border-2 border-solid p-6 my-8 w-full">
-                <form class="w-full max-w-lg" method="POST" action="{{ route('logs.store') }}">
+                <form method="POST" action="{{ route('logs.update', ['log' => $log->id]) }}">
+                    @method('PATCH')
                     @csrf
-                    <x-form :log="$log" :id="$log->id" />
+                    <x-form :log="$log" />
                     <div
                         class="ml-4 w-60 text-center text-2xl text-white dark:text-gray-500 bg-amber-400 rounded-full p-3 my-4">
-                        <button type="submit" class="bg-amber-500">投稿する</button>
+                        <button type="submit">更新する</button>
                     </div>
                 </form>
-
             </div>
         </div>
-    </div>
 </x-app-layout>

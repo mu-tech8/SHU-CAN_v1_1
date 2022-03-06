@@ -19,7 +19,8 @@ use App\Http\Controllers\LogController;
 // });
 
 Route::get('/', [LogController::class, 'index'])->name('logs.index');
-Route::resource('/logs', LogController::class)->except(['index'])->middleware('auth');
+Route::resource('/logs', LogController::class)->except(['index', 'delete'])->middleware('auth');
+Route::resource('/logs', LogController::class)->only(['show']);
 
 Route::get('/top', function () {
     return view('top');
