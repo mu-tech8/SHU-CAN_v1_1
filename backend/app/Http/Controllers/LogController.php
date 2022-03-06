@@ -8,16 +8,21 @@ use App\Models\Log;
 
 class LogController extends Controller
 {
-    public function index()
+    public function __construct()
     {
-        $logs = Log::all()->sortByDesc('created_at');
-
-        return view('logs.index', compact('logs'));
+        $this->authorizeResource(Log::class, 'log');
     }
 
-    public function create()
+    public function index(Log $log)
     {
-        return view('logs.create');
+        $logs = Log::all()->sortByDesc('created_at');
+        $id = $log->id;
+        return view('logs.index', compact('logs', 'id'));
+    }
+
+    public function create(Log $log)
+    {
+        return view('logs.create', compact('log'));
     }
 
     public function store(LogRequest $request, Log $log)
@@ -26,5 +31,28 @@ class LogController extends Controller
         $log->user_id = $request->user()->id;
         $log->save();
         return redirect()->route('logs.index');
+    }
+
+
+    public function edit(Log $log)
+    {
+        return view('logs.edit', compact('log'));
+    }
+
+    public function update(LogRequest $request, Log $log)
+    {
+        $log->fill($request->all())->save();
+        return redirect()->route('logs.index');
+    }
+
+    public function destroy(Log $log)
+    {
+        $log->delete();
+        return redirect()->route('logs.index');
+    }
+
+    public function show(Log $log)
+    {
+        return view('logs.show', compact('log'));
     }
 }

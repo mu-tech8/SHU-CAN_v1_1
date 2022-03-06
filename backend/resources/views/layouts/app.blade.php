@@ -16,10 +16,16 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Flowbite -->
+    <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
 </head>
 
 <body>
     {{$slot}}
+
+    <!-- Flowbite -->
+    <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script>
+
 </body>
 {{-- <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">
