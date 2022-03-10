@@ -5,19 +5,24 @@ namespace App\Http\Controllers;
 use App\Http\Requests\LogRequest;
 use Illuminate\Http\Request;
 use App\Models\Log;
+use App\Models\Goodjob;
+use Illuminate\Support\Facades\Auth;
+
 
 class LogController extends Controller
 {
     public function __construct()
     {
         $this->authorizeResource(Log::class, 'log');
+        $this->middleware(['auth', 'verified'])->only(['goodjob', 'ungoodjob']);
     }
 
     public function index(Log $log)
     {
         $logs = Log::all()->sortByDesc('created_at');
         $id = $log->id;
-        return view('logs.index', compact('logs', 'id'));
+        $goodjob = Goodjob::all()->first;
+        return view('logs.index', compact('logs', 'id', 'goodjob'));
     }
 
     public function create(Log $log)
@@ -51,8 +56,31 @@ class LogController extends Controller
         return redirect()->route('logs.index');
     }
 
-    public function show(Log $log)
+    public function show(Log $log, Goodjob $goodjob)
     {
+
         return view('logs.show', compact('log'));
+    }
+
+    public function goodjob($id)
+    {
+        Goodjob::create([
+            'log_id' => $id,
+            'user_id' => Auth::id(),
+        ]);
+
+        session()->flash('success', 'You goodjobd the log.');
+
+        return redirect()->back();
+    }
+
+    public function ungoodjob($id)
+    {
+        $goodjob = goodjob::where('log_id', $id)->where('user_id', Auth::id())->first();
+        $goodjob->delete();
+
+        session()->flash('success', 'You Ungoodjobd the log.');
+
+        return redirect()->back();
     }
 }
