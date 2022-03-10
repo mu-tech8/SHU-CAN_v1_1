@@ -18,6 +18,7 @@
                     <div>
                         {{ $log->created_at->format('Y/m/d H:i') }}
                     </div>
+                    <x-like-button :log="$log" />
                 </div>
                 <x-delete-modal :log="$log" :id="$log->id" />
             </div>
