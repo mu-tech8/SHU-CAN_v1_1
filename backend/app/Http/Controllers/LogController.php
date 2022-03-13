@@ -6,6 +6,7 @@ use App\Http\Requests\LogRequest;
 use Illuminate\Http\Request;
 use App\Models\Log;
 use App\Models\Goodjob;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -69,7 +70,7 @@ class LogController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        session()->flash('success', 'You goodjobd the log.');
+        // session()->flash('success', 'You goodjobd the log.');
 
         return redirect()->back();
     }
@@ -79,7 +80,7 @@ class LogController extends Controller
         $goodjob = goodjob::where('log_id', $id)->where('user_id', Auth::id())->first();
         $goodjob->delete();
 
-        session()->flash('success', 'You Ungoodjobd the log.');
+        // session()->flash('success', 'You Ungoodjobd the log.');/
 
         return redirect()->back();
     }
