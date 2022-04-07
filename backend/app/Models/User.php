@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+
+
 
 class User extends Authenticatable
 {
@@ -51,5 +54,49 @@ class User extends Authenticatable
     public function goodjobs(): HasMany
     {
         return $this->hasMany('App\Models\Goodjob');
+    }
+
+    public function followers(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'relationships', 'followee_id', 'follower_id');
+    }
+
+    public function follows(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class, 'relationships', 'follower_id', 'followee_id');
+    }
+
+    // フォローする
+    public function follow(Int $user_id)
+    {
+        return $this->follows()->attach($user_id);
+    }
+
+    // フォロー解除する
+    public function unfollow(Int $user_id)
+    {
+        return $this->follows()->detach($user_id);
+    }
+
+    // フォローしているか
+    public function isFollowing(Int $user_id)
+    {
+        return (bool) $this->follows()->where('followee_id', $user_id)->first();
+    }
+
+    // フォローされているか
+    public function isFollowed(Int $user_id)
+    {
+        return (bool) $this->followers()->where('follower_id', $user_id)->first();
+    }
+
+    public function getCountFollowersAttribute(): int
+    {
+        return $this->followers->count();
+    }
+
+    public function getCountFollowsAttribute(): int
+    {
+        return $this->follows->count();
     }
 }

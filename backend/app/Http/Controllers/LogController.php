@@ -23,7 +23,9 @@ class LogController extends Controller
         $logs = Log::all()->sortByDesc('created_at');
         $id = $log->id;
         $goodjob = Goodjob::all()->first;
-        return view('logs.index', compact('logs', 'id', 'goodjob'));
+        $user = User::where('id', $id)->first();
+
+        return view('logs.index', compact('logs', 'id', 'goodjob', 'user'));
     }
 
     public function create(Log $log)
@@ -77,7 +79,7 @@ class LogController extends Controller
 
     public function ungoodjob($id)
     {
-        $goodjob = goodjob::where('log_id', $id)->where('user_id', Auth::id())->first();
+        $goodjob = Goodjob::where('log_id', $id)->where('user_id', Auth::id())->first();
         $goodjob->delete();
 
         // session()->flash('success', 'You Ungoodjobd the log.');/

@@ -1,9 +1,5 @@
 <x-app-layout>
-    <x-nav-bar />
-    {{-- <div x-data="{isShow: false}">
-        <h1 x-show="isShow">Hello World</h1>
-        <button @click="isShow = !isShow">表示・非表示</button>
-    </div> --}}
+    <x-nav-bar :user="$user" />
     <div class="grid grid-cols-6 gap-10">
         <div class="col-span-2"></div>
         <div class="col-span-3">
