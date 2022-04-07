@@ -16,6 +16,6 @@
         <textarea
             class="h-64 appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             name="body" id="body" required type="text" 　rows="10"
-            placeholder="<例>今日はLarave8について学んだ">{{ $log->body ?? old('body') }}</textarea>
+            placeholder="<例>今日はLaravel8について学んだ">{{ $log->body ?? old('body') }}</textarea>
     </div>
 </div>

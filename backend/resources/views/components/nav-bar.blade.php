@@ -1,11 +1,11 @@
-<nav class="flex bg-amber-500 p-6">
+<nav class="flex bg-amber-500 pt-8 px-6">
     <div class="text-white">
         <a href="/" class="font-semibold text-xl tracking-tight">SHU-CAN</a>
     </div>
-    <div class="ml-auto w-full flex items-center sm:w-auto lg:w-auto">
+    <div class="ml-auto mb-2 w-full flex items-center sm:w-auto lg:w-auto">
         @auth
         <div
-            class="text-sm px-6 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-gray-500 hover:bg-white mt-4 lg:mt-0">
+            class="text-sm px-6 py-2 mb-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-gray-500 hover:bg-white mt-4 lg:mt-0">
             <a href="{{ route('logs.create') }}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 float-left" fill="none" viewBox="0 0 24 24"
                     stroke="currentColor" stroke-width="2">
@@ -26,43 +26,44 @@
             </svg>
         </button>
     </div>
+
     <div id="dropdownNav"
         class="hidden z-10 w-44 text-base list-none bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700">
         <ul class="py-1" aria-labelledby="dropdownButtonNav">
             @auth
-            {{-- <li>
+            <li>
                 <div
-                    class="text-sm ml-2 px-4 py-2 leading-none border rounded text-gray-500 border-white  hover:bg-gray-200 mt-4 lg:mt-0">
-                    <a href="{{ route('logs.create') }}">投稿する</a>
-    </div>
-    </li> --}}
-    <li>
-        <div
-            class="mx-2 text-sm px-4 py-2 leading-none border rounded text-gray-500 border-white  hover:bg-gray-200 mt-4 lg:mt-0">
-            <a href="{{ route('users.show', ['id' => auth()->user()->id]) }}">マイページ</a>
-        </div>
-    </li>
-    <li>
-        <div
-            class="mx-2 text-sm px-4 py-2 leading-none border rounded text-gray-500 border-white  hover:bg-gray-200 mt-4 lg:mt-0">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button href="{{ route('logout') }}">
-                    ログアウト
-                </button>
-            </form>
-        </div>
-    </li>
-    @endauth
-    @guest
-    <li>
-        <div
-            class="text-sm px-4 py-2 leading-none border rounded text-white border-white hover:border-transparent hover:text-gray-500 hover:bg-white mt-4 lg:mt-0">
-            <a href="/top">トップページ</a>
-        </div>
-    </li>
-    @endguest
-    </ul>
+                    class="mx-2 text-sm px-4 py-2 leading-none border rounded text-gray-500 border-white  hover:bg-gray-200 mt-4 lg:mt-0">
+                    <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}">マイページ</a>
+                </div>
+            </li>
+            <li>
+                <div
+                    class="mx-2 text-sm px-4 py-2 leading-none border rounded text-gray-500 border-white  hover:bg-gray-200 mt-4 lg:mt-0">
+                    <a href="{{ route('users.index')}}">ユーザー一覧</a>
+                </div>
+            </li>
+            <li>
+                <div
+                    class="mx-2 text-sm px-4 py-2 leading-none border rounded text-gray-500 border-white  hover:bg-gray-200 mt-4 lg:mt-0">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button href="{{ route('logout') }}">
+                            ログアウト
+                        </button>
+                    </form>
+                </div>
+            </li>
+            @endauth
+            @guest
+            <li>
+                <div
+                    class="text-sm px-4 py-2 leading-none border rounded text-gray-500 border-white hover:bg-gray-200  hover:bg-gray-200 mt-4 lg:mt-0">
+                    <a href="/top">トップページ</a>
+                </div>
+            </li>
+            @endguest
+        </ul>
     </div>
     </div>
 </nav>

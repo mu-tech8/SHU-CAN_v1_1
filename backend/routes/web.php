@@ -30,9 +30,14 @@ Route::prefix('logs')->name('logs.')->group(function () {
     Route::get('/ungoodjob/{log}', [LogController::class, 'ungoodjob'])->name('ungoodjob');
 });
 
-Route::prefix('users')->name('users.')->group(function () {
-    Route::get('/{id}', [UserController::class, 'show'])->name('show');
+Route::middleware('auth')->group(function () {
+    Route::resource('/users', UserController::class)->only(['index', 'show', 'edit', 'update']);
+    // フォロー/フォロー解除を追加
+    Route::post('users/{user}/follow', [UserController::class, 'follow'])->name('follow');
+    Route::delete('users/{user}/unfollow', [UserController::class, 'unfollow'])->name('unfollow');
 });
+Route::get('users/{user}/followings', [UserController::class, 'followings'])->name('users.followings');
+Route::get('users/{user}/followers', [UserController::class, 'followers'])->name('users.followers');
 
 Route::get('/top', function () {
     return view('top');
