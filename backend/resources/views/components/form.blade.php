@@ -5,7 +5,8 @@
         </label>
         <input
             class="appearance-none block w-full bg-gray-200 text-gray-700 border border-red-500 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
-            name="learn_time" id="learn_time" required type="time" step="900" placeholder="" value="00:00">
+            name="learn_time" id="learn_time" required type="time" step="900"
+            value="{{ $log->learn_time ?? old('learn_time') }}">
     </div>
 </div>
 <div class="flex flex-wrap  mb-4 ">

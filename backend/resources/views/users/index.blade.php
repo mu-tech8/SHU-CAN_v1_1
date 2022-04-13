@@ -8,8 +8,11 @@
                 @if ($user->id !== Auth::user()->id)
                 <div class="shadow-xl p-4 h-44">
                     <a href="{{ route('users.show', ['user' => $user->id]) }}" class="text-gray-500">
-                        <img src="/images/dog_great_pyrenees.png" class="float-left rounded-full shadow-xl p-4 mr-4"
-                            width="80" height="80">
+                        @if(!isset($user->profile_image))
+                        <img src="/images/noimage.png" class="float-left rounded-full  p-1 mr-6" width="80" height="80">
+                        @else
+                        <img src="/storage/{{$user->profile_image}}">
+                        @endif
                         <div class="my-2 ml-2">
                             <p class="mb-0">{{ $user->name }}</p>
                         </div>

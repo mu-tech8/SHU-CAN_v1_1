@@ -18,9 +18,9 @@ class LogController extends Controller
         $this->middleware(['auth', 'verified'])->only(['goodjob', 'ungoodjob']);
     }
 
-    public function index(Log $log)
+    public function index(Log $log, User $user)
     {
-        $logs = Log::all()->sortByDesc('created_at');
+        $logs = Log::whereIn('user_id', Auth::user()->follows()->pluck('followee_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
         $id = $log->id;
         $goodjob = Goodjob::all()->first;
         $user = User::where('id', $id)->first();
