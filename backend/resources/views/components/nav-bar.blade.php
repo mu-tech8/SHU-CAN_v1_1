@@ -34,13 +34,13 @@
             <li>
                 <div
                     class="mx-2 text-sm px-4 py-2 leading-none border rounded text-gray-500 border-white  hover:bg-gray-200 mt-4 lg:mt-0">
-                    <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}">マイページ</a>
+                    <a href="{{ route('logs.index')}}">ホーム</a>
                 </div>
             </li>
             <li>
                 <div
                     class="mx-2 text-sm px-4 py-2 leading-none border rounded text-gray-500 border-white  hover:bg-gray-200 mt-4 lg:mt-0">
-                    <a href="{{ route('users.index')}}">ユーザー一覧</a>
+                    <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}">マイページ</a>
                 </div>
             </li>
             <li>

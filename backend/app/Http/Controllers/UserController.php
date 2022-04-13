@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Goodjob;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -24,6 +25,17 @@ class UserController extends Controller
         $goodjobs = $user->goodjobs()->where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
         return view('users.show', compact('user', 'logs', 'goodjob', 'goodjobs'));
+    }
+
+    public function edit(User $user)
+    {
+        return view('users.edit', compact('user'));
+    }
+
+    public function update(UserRequest $request, User $user)
+    {
+        $user->fill($request->all())->save();
+        return redirect()->route('users.show', ['user' => Auth::user()->id]);
     }
 
     public function follow(User $user)
