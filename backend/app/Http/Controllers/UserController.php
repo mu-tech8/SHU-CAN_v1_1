@@ -70,4 +70,13 @@ class UserController extends Controller
         $followers = $user->followers->sortByDesc('created_at');
         return view('users.followers', compact('user', 'followers'));
     }
+
+    public function updateImage(Request $request, User $user)
+    {
+        $file_name = $request->profile_image->getClientOriginalName();
+        $img = isset($file_name) ? $request->profile_image->storeAs("", $file_name, 'public') : '';
+        User::where('id', Auth::user()->id)->update(['profile_image' => $img]);
+        // return view('users.updateImage', compact('data'));
+        return redirect()->route('users.show', ['user' => Auth::user()->id]);
+    }
 }

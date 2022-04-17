@@ -20,7 +20,7 @@ use App\Http\Controllers\UserController;
 // });
 
 Route::get('/', [LogController::class, 'index'])->name('logs.index');
-Route::resource('/logs', LogController::class)->except(['index', 'delete'])->middleware('auth');
+Route::resource('/logs', LogController::class)->except(['delete'])->middleware('auth');
 Route::resource('/logs', LogController::class)->only(['show']);
 
 
@@ -31,10 +31,11 @@ Route::prefix('logs')->name('logs.')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('/users', UserController::class)->only(['index', 'show', 'edit', 'update']);
+    Route::resource('/users', UserController::class)->only(['index', 'show', 'edit', 'update', 'store']);
     // フォロー/フォロー解除を追加
     Route::post('users/{user}/follow', [UserController::class, 'follow'])->name('follow');
     Route::delete('users/{user}/unfollow', [UserController::class, 'unfollow'])->name('unfollow');
+    Route::post('users', [UserController::class, 'updateImage'])->name('updateImage');
 });
 Route::get('users/{user}/followings', [UserController::class, 'followings'])->name('users.followings');
 Route::get('users/{user}/followers', [UserController::class, 'followers'])->name('users.followers');

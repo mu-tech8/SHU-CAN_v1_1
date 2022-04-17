@@ -2,19 +2,11 @@
     <x-nav-bar />
     <div class="grid grid-cols-5 gap-4">
         <div class="flex-none w-14 h-84">
-
         </div>
-        <div class="col-span-3 ">
+        <div class="col-span-3">
             <div class="rounded overflow-hidden shadow-lg border-2 border-solid p-6 my-8 w-full">
-                <form method="POST" action="{{ route('users.update', ['user' => $user->id]) }}">
-                    @method('PATCH')
-                    @csrf
-                    <x-user-edit-form :user="$user" />
-                    <div
-                        class="ml-auto w-60 text-center text-2xl text-white dark:text-gray-500 bg-amber-400 rounded-full p-3 my-4">
-                        <button type="submit">更新する</button>
-                    </div>
-                </form>
+                <x-user-edit-form :user="$user" />
             </div>
         </div>
+    </div>
 </x-app-layout>
