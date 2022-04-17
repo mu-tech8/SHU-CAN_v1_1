@@ -7,11 +7,12 @@
                 @foreach ($followers as $follower)
                 <div class="shadow-xl p-4 h-44">
                     <a href="{{ route('users.show', ['user' => $follower->id]) }}" class="text-gray-500">
-                        @if(!isset($user->profile_image))
+                        @if(!isset($follower->profile_image))
                         <img src="/images/noimage.png" class="float-left rounded-full  p-1 mr-4" width="100"
                             height="100">
                         @else
-                        <img src="/storage/{{$user->profile_image}}">
+                        <img src="/storage/{{$follower->profile_image}}" class="float-left rounded-full  p-1 mr-4"
+                            width="100" height="100">
                         @endif
                         <div class="my-2 ml-2">
                             <p class="mb-0">{{ $follower->name }}</p>

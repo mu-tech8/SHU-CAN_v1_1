@@ -11,17 +11,20 @@
                         <img src="/images/noimage.png" class="float-left rounded-full  p-1 mr-4" width="100"
                             height="100">
                         @else
-                        <img src="/storage/{{$user->profile_image}}">
+                        <img src="/storage/{{$user->profile_image}}" class="float-left rounded-full  p-1 mr-4"
+                            width="100" height="100">
                         @endif
                         <div class="my-2 ml-2">
                             <p class="mb-0">{{ $user->name }}</p>
                         </div>
                     </a>
+                    @if ($user->id === Auth::user()->id)
                     <div
                         class="absolute top-0 right-0 mx-2 text-sm px-4 py-2 leading-none border rounded text-gray-500 border-white mt-4 lg:mt-0">
                         <a href="{{ route('users.edit', ['user' => Auth::user()->id])}}"
                             class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">編集する</a>
                     </div>
+                    @endif
                     <div>{{ $user->self_introduction}}</div>
                     @if ($user->id !== Auth::user()->id)
                     @if (Auth::user()->isFollowed($user->id))
