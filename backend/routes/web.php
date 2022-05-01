@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CommentController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -39,6 +41,8 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('users/{user}/followings', [UserController::class, 'followings'])->name('users.followings');
 Route::get('users/{user}/followers', [UserController::class, 'followers'])->name('users.followers');
+
+Route::resource('/comments', CommentController::class)->middleware('auth');
 
 Route::get('/top', function () {
     return view('top');

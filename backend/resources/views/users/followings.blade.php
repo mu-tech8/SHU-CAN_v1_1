@@ -19,9 +19,9 @@
                         </div>
                     </a>
                     @if (Auth::user()->isFollowed($following->id))
-                    <div class="px-2 mb-2 ">
-                        <span class="p-1 text-xs bg-gray-100 text-gray-500 rounded-sm">フォローされています</span>
-                    </div>
+
+                    <span class="p-1 text-xs bg-gray-100 text-gray-500 rounded-sm">フォローされています</span>
+
                     @endif
 
                     @if ($following->id !== Auth::user()->id)
@@ -31,13 +31,13 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit"
-                                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">フォロー解除</button>
+                                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-2 dark:focus:ring-yellow-900">フォロー解除</button>
                         </form>
                         @else
                         <form action="{{ route('follow', ['user' => $following->id]) }}" method="POST">
                             @csrf
                             <button type="submit"
-                                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">フォロー</button>
+                                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 my-2 dark:focus:ring-yellow-900">フォロー</button>
                         </form>
                         @endif
                     </div>

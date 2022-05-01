@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Log;
 use App\Models\Goodjob;
 use App\Models\User;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -20,10 +21,16 @@ class LogController extends Controller
 
     public function index(Log $log, User $user)
     {
-        $logs = Log::whereIn('user_id', Auth::user()->follows()->pluck('followee_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
+        $logs = Log::with(['comments.user'])->whereIn('user_id', Auth::user()->follows()->pluck('followee_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
         $id = $log->id;
         $goodjob = Goodjob::all()->first;
-        $user = User::where('id', $id)->first();
+
+        // $comments = Comment::with('log', 'user')->get();
+        // $comment = $comments->where('user_id', $log->user_id)->first();
+        // $user = User::where('id', $id)->first();
+        // $log = Log::with(['comments.user'])->get();
+        // $comment = Comment::with('id');
+        // $comments = $user->comments->where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
         return view('logs.index', compact('logs', 'id', 'goodjob', 'user'));
     }
@@ -62,7 +69,7 @@ class LogController extends Controller
     public function show(Log $log, Goodjob $goodjob)
     {
 
-        return view('logs.show', compact('log'));
+        return view('logs.show', compact('log', 'goodjob'));
     }
 
     public function goodjob($id)

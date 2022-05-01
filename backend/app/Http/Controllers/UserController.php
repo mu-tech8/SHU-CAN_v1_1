@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Goodjob;
+use App\Models\Log;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Auth;
@@ -17,14 +18,16 @@ class UserController extends Controller
         return view('users.index', compact('users'));
     }
 
-    public function show(User $user)
+    public function show(User $user, Log $log)
     {
-        $user = User::where('id', $user->id)->first();
+        $user = User::with(['logs.goodjobs'])->where('id', $user->id)->first();
         $logs = $user->logs->sortByDesc('created_at');
         $goodjob = Goodjob::with('id');
         $goodjobs = $user->goodjobs()->where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+        $users = User::with(['comments.log'])->where('id', $log->user_id)->first();
+        $comments = $user->comments()->where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
-        return view('users.show', compact('user', 'logs', 'goodjob', 'goodjobs'));
+        return view('users.show', compact('user', 'users', 'logs', 'goodjob', 'goodjobs', 'comments'));
     }
 
     public function edit(User $user)
@@ -76,7 +79,6 @@ class UserController extends Controller
         $file_name = $request->profile_image->getClientOriginalName();
         $img = isset($file_name) ? $request->profile_image->storeAs("", $file_name, 'public') : '';
         User::where('id', Auth::user()->id)->update(['profile_image' => $img]);
-        // return view('users.updateImage', compact('data'));
         return redirect()->route('users.show', ['user' => Auth::user()->id]);
     }
 }
