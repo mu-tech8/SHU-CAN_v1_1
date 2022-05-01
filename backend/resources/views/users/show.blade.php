@@ -5,7 +5,6 @@
         <div class="col-span-3">
             <div class="p-8 mt-4 w-8/12 rounded overflow-hidden shadow-lg relative">
                 <div class="px-2 py-4">
-
                     <a href="{{ route('users.show', ['user' => $user->id]) }}" class="text-gray-500">
                         @if(!isset($user->profile_image))
                         <img src="/images/noimage.png" class="float-left rounded-full  p-1 mr-4" width="100"
@@ -76,7 +75,7 @@
                         </li>
                     </ul>
                     <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded">
-                        <div class="px-4 py-5 w-8/12 mx-auto">
+                        <div class="px-4 py-5 w-11/12 mx-auto">
                             <div class="tab-content tab-space">
                                 <div class="block" id="tab-logs">
                                     @if($logs->isEmpty())
@@ -84,7 +83,7 @@
                                     @endif
                                     @foreach($logs as $log)
                                     <div class="p-3 my-2 max-w-md rounded overflow-hidden shadow-lg">
-                                        <x-card :log="$log" />
+                                        <x-card :log="$log" :user="$user" />
                                     </div>
                                     @endforeach
                                 </div>
@@ -94,7 +93,8 @@
                                     @endif
                                     @foreach($goodjobs as $goodjob)
                                     <div class="p-3 my-2 max-w-md rounded overflow-hidden shadow-lg">
-                                        <x-user-card :goodjob="$goodjob" :user="$user" />
+                                        <x-user-card :goodjob="$goodjob" :user="$user" :users="$users" :log="$log"
+                                            :comments="$comments" />
                                     </div>
                                     @endforeach
                                 </div>

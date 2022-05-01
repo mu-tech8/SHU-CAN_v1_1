@@ -1,6 +1,6 @@
 <div class="flex">
     @if($log->is_goodjobed_by_auth_user())
-    <div class="p-2 border rounded-lg">
+    <div class="px-2 py-2 border rounded-lg">
         <a href="{{ route('logs.ungoodjob', $log) }}">
             <p class="text-xs">Goodjob</p>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 fill-current text-amber-500 float-left"
@@ -12,9 +12,9 @@
         </a>
     </div>
     @else
-    <div class="p-2 border rounded-lg">
+    <div class="px-2 py-2 border rounded-lg">
         <a href="{{ route('logs.goodjob', $log) }}">
-            <p class="text-xs">Goodjob</p>
+            <p class="text-xs py-1">Goodjob</p>
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 float-left" fill="none" viewBox="0 0 24 24"
                 stroke-width="2" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round"

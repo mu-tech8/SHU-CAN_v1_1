@@ -27,6 +27,10 @@ class Log extends Model
         return $this->hasMany('App\Models\Goodjob');
     }
 
+    public function comments(): HasMany
+    {
+        return $this->hasMany('App\Models\Comment');
+    }
 
     public function is_goodjobed_by_auth_user()
     {
