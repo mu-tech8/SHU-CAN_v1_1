@@ -1,9 +1,11 @@
 <x-app-layout>
     <x-nav-bar />
     <div class="grid grid-cols-6 gap-10">
-        <div class="col-span-2"></div>
-        <div class="col-span-3">
-            <div class="p-8 mt-4 w-8/12 rounded overflow-hidden shadow-lg relative">
+        <div class="col-span-2">
+            <x-login-user-face />
+        </div>
+        <div class="col-span-2">
+            <div class="p-8 mt-4 w-11/12 rounded overflow-hidden shadow-lg relative">
                 <div class="px-2 py-4">
                     <a href="{{ route('users.show', ['user' => $user->id]) }}" class="text-gray-500">
                         @if(!isset($user->profile_image))
@@ -59,7 +61,7 @@
                 </div>
             </div>
             <div class="flex flex-wrap" id="tabs-id">
-                <div class="w-8/12 mr-6">
+                <div class="w-11/12 mr-6">
                     <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 flex-row">
                         <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
                             <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-white bg-amber-500"
@@ -128,7 +130,9 @@
                 document.getElementById(tabID).classList.add("block");
                 }
             </script>
-
+        </div>
+        <div class="col-span-1 float-left">
+            <x-search-bar />
         </div>
     </div>
     </div>

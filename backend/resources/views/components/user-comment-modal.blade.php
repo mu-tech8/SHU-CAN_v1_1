@@ -24,8 +24,8 @@
                         <div class="ml-2 mb-1">
                             返信先：<span class="text-gray-500 font-bold">{{ $goodjob->log->user->name }}</span>
                         </div>
-                        <div class="text-xs">
-                            -{{$goodjob->log->body}}
+                        <div class="text-xs p-2 border mb-2">
+                            {{$goodjob->log->body}}
                         </div>
                         <input type="hidden" name="log_id" value="{{ $goodjob->log_id }}">
                         <textarea

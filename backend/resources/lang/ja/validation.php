@@ -138,5 +138,6 @@ return [
         'email' => 'メールアドレス',
         'password' => 'パスワード',
         'self_introduction' => '自己紹介',
+        'body' => '本文',
     ],
 ];

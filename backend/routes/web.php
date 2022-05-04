@@ -25,11 +25,10 @@ Route::get('/', [LogController::class, 'index'])->name('logs.index');
 Route::resource('/logs', LogController::class)->except(['delete'])->middleware('auth');
 Route::resource('/logs', LogController::class)->only(['show']);
 
-
-
 Route::prefix('logs')->name('logs.')->group(function () {
     Route::get('/goodjob/{log}', [LogController::class, 'goodjob'])->name('goodjob');
     Route::get('/ungoodjob/{log}', [LogController::class, 'ungoodjob'])->name('ungoodjob');
+    Route::post('/search', [LogController::class, 'search'])->name('search');
 });
 
 Route::middleware('auth')->group(function () {
