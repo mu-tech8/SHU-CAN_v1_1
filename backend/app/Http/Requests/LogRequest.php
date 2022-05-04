@@ -25,7 +25,7 @@ class LogRequest extends FormRequest
     {
         return [
             'learn_time' => 'required|max:24',
-            'body' => 'required|max:500',
+            'body' => 'required|min:2|max:500',
         ];
     }
 }

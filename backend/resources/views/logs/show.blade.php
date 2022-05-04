@@ -1,8 +1,10 @@
 <x-app-layout>
     <x-nav-bar />
     <div class="grid grid-cols-6 gap-10">
-        <div class="col-span-2"></div>
-        <div class="col-span-3">
+        <div class="col-span-2">
+            <x-login-user-face />
+        </div>
+        <div class="col-span-2">
             <div class="p-3 mt-4 max-w-md rounded overflow-hidden shadow-lg">
                 <div class="px-6 py-4">
                     <div class="float-right ml-4">
@@ -74,6 +76,9 @@
                 @endforeach
             </div>
             @endif
+        </div>
+        <div class="col-span-2">
+            <x-search-bar />
         </div>
     </div>
 </x-app-layout>

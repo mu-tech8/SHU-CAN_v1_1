@@ -1,5 +1,8 @@
 <div class="flex flex-wrap mb-6">
     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+        @error('learn_time')
+        {{ $message }}
+        @enderror
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="learn_time">
             学習時間
         </label>
@@ -9,8 +12,11 @@
             value="{{ $log->learn_time ?? old('learn_time') }}">
     </div>
 </div>
-<div class="flex flex-wrap  mb-4 ">
-    <div class="w-full px-3 mb-6 ">
+<div class="flex flex-wrap mb-4">
+    <div class="w-full px-3 mb-6">
+        @error('body')
+        <span class="text-red-400">{{ $message }}</span>
+        @enderror
         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="body">
             学習内容
         </label>

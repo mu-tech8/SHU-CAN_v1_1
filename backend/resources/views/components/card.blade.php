@@ -28,7 +28,7 @@
     </div>
     <div class="float-right">
         <x-comment-button :log="$log" />
-        <x-comment-modal :log="$log" />
+        <x-comment-modal :log="$log" :user="$user" />
         <x-delete-modal :log="$log" />
     </div>
 </div>

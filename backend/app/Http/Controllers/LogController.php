@@ -21,10 +21,13 @@ class LogController extends Controller
 
     public function index(Log $log, User $user)
     {
-        $logs = Log::with(['comments.user'])->whereIn('user_id', Auth::user()->follows()->pluck('followee_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
+        if (Auth::user()) {
+            $logs = Log::with(['comments.user'])->whereIn('user_id', Auth::user()->follows()->pluck('followee_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
+        } else {
+            return view('/top');
+        }
         $id = $log->id;
         $goodjob = Goodjob::all()->first;
-
         // $comments = Comment::with('log', 'user')->get();
         // $comment = $comments->where('user_id', $log->user_id)->first();
         // $user = User::where('id', $id)->first();
@@ -92,5 +95,13 @@ class LogController extends Controller
         // session()->flash('success', 'You Ungoodjobd the log.');/
 
         return redirect()->back();
+    }
+
+    public function search(Request $request, User $user)
+    {
+        $search = $request->search;
+        $logs = Log::where('body', 'like', "%{$request->search}%")->get();
+        // $count = $logs->total();
+        return view('logs.search', compact('logs', 'user', 'search'));
     }
 }
