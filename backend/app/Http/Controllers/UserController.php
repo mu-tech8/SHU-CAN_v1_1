@@ -81,4 +81,90 @@ class UserController extends Controller
         User::where('id', Auth::user()->id)->update(['profile_image' => $img]);
         return redirect()->route('users.show', ['user' => Auth::user()->id]);
     }
+
+    public function showGraph(Request $request, User $user)
+    {
+        $auth_user = Auth::user();
+        if ($user->id !== $auth_user->id) {
+            abort(404);
+        }
+
+        $monthly_labels = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $monthly_labels[] .= "{$i}月";
+        };
+        $daily_labels = [];
+        for ($i = 1; $i <= date('t'); $i++) {
+            $daily_labels[] .= "{$i}日";
+        }
+
+        $sum_learn_time_log = $this->getMonthlyLearnTime($auth_user);
+        $daily_sum_learn_time_log = $this->getDailyLearnTime($auth_user);
+        return view('users.graph', compact('auth_user', 'monthly_labels', 'daily_labels', 'sum_learn_time_log', 'daily_sum_learn_time_log'));
+    }
+
+    public function getMonthlyLearnTime($auth_user)
+    {
+        $target_days = [];
+        $current_year = date('Y');
+        for ($i = 1; $i <= 12; $i++) {
+            if ($i <= 9) {
+                $target_days[] .= "{$current_year}-0{$i}";
+            } else if ($i > 9) {
+                $target_days[] .= "{$current_year}-{$i}";
+            }
+        };
+        foreach ($target_days as $data_key) {
+            $sum_learn_time_log[] = $this->getSumLearnTimeLog($auth_user, $data_key);
+        }
+        return $sum_learn_time_log;
+    }
+
+    public function getDailyLearnTime($auth_user)
+    {
+        $target_days = [];
+        $current_year = date('Y');
+        $current_month = date('m');
+        for ($i = 1; $i <= date('t'); $i++) {
+            if ($i <= 9) {
+                $target_days[] .= "{$current_year}-{$current_month}-0{$i}";
+            } else if ($i > 9) {
+                $target_days[] .= "{$current_year}-{$current_month}-{$i}";
+            }
+        };
+        foreach ($target_days as $data_key) {
+            if (null) {
+                $daily_sum_learn_time_log[] = 0;
+            }
+            $daily_sum_learn_time_log[] = $this->getSumLearnTimeLog($auth_user, $data_key);
+        }
+        return $daily_sum_learn_time_log;
+    }
+
+    public function hourToMinutes($learn_time)
+    {
+        $time = explode(':', $learn_time);
+        $minutes = $time[0] * 60 + $time[1];
+        return $minutes;
+    }
+
+    public function sumMinutesToTime($sum_minutes)
+    {
+        $hour = floor($sum_minutes / 60);
+        $minutes = floor($sum_minutes % 60);
+        $sum_time = sprintf("%2d:%02d:%02d", $hour, $minutes);
+        return $sum_time;
+    }
+
+    public function getSumLearnTimeLog($auth_user, $date_key)
+    {
+        $logs = Log::where("user_id", $auth_user->id)->where("created_at", "like", $date_key . "%")->get();
+
+        $sum_minutes = 0;
+        foreach ($logs as $log) {
+            $learn_time = $this->hourToMinutes($log->learn_time);
+            $sum_minutes += $learn_time;
+        }
+        return $sum_minutes;
+    }
 }

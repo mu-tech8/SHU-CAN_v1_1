@@ -18,6 +18,7 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <!-- Flowbite -->
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
+
 </head>
 
 <body>
