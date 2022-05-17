@@ -46,6 +46,12 @@
             <li>
                 <div
                     class="mx-2 text-sm px-4 py-2 leading-none border rounded text-gray-500 border-white  hover:bg-gray-200 mt-4 lg:mt-0">
+                    <a href="{{ route('graph', ['user' => Auth::user()->id]) }}">学習実績</a>
+                </div>
+            </li>
+            <li>
+                <div
+                    class="mx-2 text-sm px-4 py-2 leading-none border rounded text-gray-500 border-white  hover:bg-gray-200 mt-4 lg:mt-0">
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
                         <button href="{{ route('logout') }}">

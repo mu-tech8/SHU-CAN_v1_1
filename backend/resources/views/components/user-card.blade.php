@@ -4,7 +4,7 @@
     </div>
     <div>
         <a href="{{ route('users.show', ['user' => $goodjob->log->user_id]) }}" class="text-gray-500">
-            @if(!isset($user->profile_image))
+            @if(!isset($goodjob->log->user->profile_image))
             <img src="/images/noimage.png" class="float-left rounded-full p-1 mr-6" width="80" height="80">
             @else
             <img src="/storage/{{$goodjob->log->user->profile_image}}" class="float-left rounded-full  p-1 mr-4"

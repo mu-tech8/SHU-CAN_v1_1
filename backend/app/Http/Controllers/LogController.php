@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 use App\Models\Log;
 use App\Models\Goodjob;
 use App\Models\User;
-use App\Models\Comment;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -28,12 +27,6 @@ class LogController extends Controller
         }
         $id = $log->id;
         $goodjob = Goodjob::all()->first;
-        // $comments = Comment::with('log', 'user')->get();
-        // $comment = $comments->where('user_id', $log->user_id)->first();
-        // $user = User::where('id', $id)->first();
-        // $log = Log::with(['comments.user'])->get();
-        // $comment = Comment::with('id');
-        // $comments = $user->comments->where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
         return view('logs.index', compact('logs', 'id', 'goodjob', 'user'));
     }
@@ -71,7 +64,6 @@ class LogController extends Controller
 
     public function show(Log $log, Goodjob $goodjob)
     {
-
         return view('logs.show', compact('log', 'goodjob'));
     }
 
@@ -82,8 +74,6 @@ class LogController extends Controller
             'user_id' => Auth::id(),
         ]);
 
-        // session()->flash('success', 'You goodjobd the log.');
-
         return redirect()->back();
     }
 
@@ -92,8 +82,6 @@ class LogController extends Controller
         $goodjob = Goodjob::where('log_id', $id)->where('user_id', Auth::id())->first();
         $goodjob->delete();
 
-        // session()->flash('success', 'You Ungoodjobd the log.');/
-
         return redirect()->back();
     }
 
@@ -101,7 +89,7 @@ class LogController extends Controller
     {
         $search = $request->search;
         $logs = Log::where('body', 'like', "%{$request->search}%")->get();
-        // $count = $logs->total();
+
         return view('logs.search', compact('logs', 'user', 'search'));
     }
 }

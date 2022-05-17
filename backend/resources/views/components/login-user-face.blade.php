@@ -10,7 +10,7 @@
         </a>
     </div>
     <div class="mb-6">
-        <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}" class="text-gray-500">
+        <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}" class="text-gray-500 text-sm">
             {{ Auth::user()->name }}
         </a>
     </div>

@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::post('users/{user}/follow', [UserController::class, 'follow'])->name('follow');
     Route::delete('users/{user}/unfollow', [UserController::class, 'unfollow'])->name('unfollow');
     Route::post('users', [UserController::class, 'updateImage'])->name('updateImage');
+    Route::get('users/{user}/graph', [UserController::class, 'showGraph'])->name('graph');
 });
 Route::get('users/{user}/followings', [UserController::class, 'followings'])->name('users.followings');
 Route::get('users/{user}/followers', [UserController::class, 'followers'])->name('users.followers');
