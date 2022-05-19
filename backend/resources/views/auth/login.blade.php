@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-nav-bar />
     <x-auth-card>
         <!-- Session Status -->
@@ -49,4 +49,4 @@
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</x-app-layout>
