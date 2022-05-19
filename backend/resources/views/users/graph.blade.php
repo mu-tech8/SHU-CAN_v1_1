@@ -1,5 +1,5 @@
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <x-app-layout>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <x-nav-bar :user="$auth_user" />
     <div class="grid grid-cols-6 gap-10">
         <div class="col-span-1">
