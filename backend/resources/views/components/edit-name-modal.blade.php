@@ -26,9 +26,9 @@
                             class="p-2 ml-4 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded leading-tight focus:outline-none focus:bg-white "
                             name="name" id="name" placeholder="{{ $user->name ?? old('name') }}">
                     </div>
-                    <div
-                        class="mx-auto w-40 text-center text-xl text-white dark:text-gray-500 bg-amber-400 rounded-full p-3 my-4">
-                        <button type="submit">更新する</button>
+                    <div class="mx-auto mr-0 w-32 text-center p-2 my-4">
+                        <button type="submit"
+                            class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">更新する</button>
                     </div>
                 </form>
             </div>

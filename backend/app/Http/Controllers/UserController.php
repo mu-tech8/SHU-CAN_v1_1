@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index(User $user)
-    {
-        $users = User::all()->sortByDesc('created_at');
+    // public function index(User $user)
+    // {
+    //     $users = User::all()->sortByDesc('created_at');
 
-        return view('users.index', compact('users'));
-    }
+    //     return view('users.index', compact('users'));
+    // }
 
     public function show(User $user, Log $log)
     {
