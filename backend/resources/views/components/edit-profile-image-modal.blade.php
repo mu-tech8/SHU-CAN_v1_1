@@ -19,14 +19,14 @@
             <div class="p-6 pt-0 text-center">
                 <form method="POST" action="{{ route('updateImage')}}" enctype="multipart/form-data">
                     @csrf
-                    <div class="w-64 mx-auto">
-                        <label for="name" class="float-left mt-2">プロフィール画像</label>
-
+                    <div class="w-64 mx-auto text-xs">
+                        <label for="name" class="float-left my-4">プロフィール画像</label>
                         <input type="file" name="profile_image"
-                            　class="p-2 ml-4 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded leading-tight focus:outline-none focus:bg-white ">
-                        <div
-                            class="mx-auto w-40 text-center text-md text-white dark:text-gray-500 bg-amber-400 rounded-full p-3 my-4">
-                            <button type="submit">アップロードする</button>
+                            　class="p-2 ml-4 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded leading-tight focus:outline-none focus:bg-white text-xs">
+                        <div class="mx-auto mr-0 w-40 text-center p-2 my-4">
+                            <button type=" submit"
+                                class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">
+                                アップロード</button>
                         </div>
                 </form>
             </div>

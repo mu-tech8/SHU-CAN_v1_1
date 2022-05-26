@@ -1,5 +1,5 @@
-<div class="px-6 py-4">
-    <div class="float-right text-xs">
+<div class="p-3 w-full">
+    <div class="float-right text-xs hidden md:block">
         {{ $log->created_at->format('Y/m/d H:i') }}
     </div>
     <div>
@@ -13,7 +13,7 @@
         </a>
     </div>
     <div class="mb-6">
-        <a href="{{ route('users.show', ['user' => $log->user_id]) }}" class="text-gray-500">
+        <a href="{{ route('users.show', ['user' => $log->user_id]) }}" class="text-gray-500 text-sm">
             {{ $log->user->name }}
         </a>
     </div>

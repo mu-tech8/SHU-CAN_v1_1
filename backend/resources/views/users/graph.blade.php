@@ -1,13 +1,13 @@
 <x-app-layout>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <x-nav-bar :user="$auth_user" />
-    <div class="grid grid-cols-6 gap-10">
-        <div class="col-span-1">
+    <div class="flex lg:flex-row">
+        <div class="hidden lg:block mx-auto lg:col-span-1">
             <x-login-user-face />
         </div>
-        <div class="col-span-5">
+        <div class="w-screen p-1">
             <div id="tabs-id">
-                <div class="w-11/12 mr-6">
+                <div class="">
                     <ul class="flex mb-0 list-none flex-wrap pt-3 pb-4 mb-6 flex-row">
                         <li class="-mb-px mr-2 last:mr-0 flex-auto text-center">
                             <a class="text-xs font-bold uppercase px-5 py-3 shadow-lg rounded block leading-normal text-white bg-amber-500"
@@ -44,7 +44,7 @@
                                             }]
                                         },
                                         options: {
-                                                    responsive: false,
+                                                    responsive: true,
                                                     plugins: {
                                                     tooltip: {
                                                         mode: 'index',
@@ -119,7 +119,7 @@
                                         }]
                                     },
                                     options: {
-                                                responsive: false,
+                                                responsive: true,
                                                 plugins: {
                                                 tooltip: {
                                                     mode: 'index',
