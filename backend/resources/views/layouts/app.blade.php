@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="../../css/app.css">
 
     <!-- Scripts -->
-    <script src="../js/app.js" defer></script>
+    <script src="../../js/app.js" defer></script>
     <!-- Flowbite -->
     <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css" />
 

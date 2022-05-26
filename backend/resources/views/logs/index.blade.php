@@ -1,18 +1,18 @@
 <x-app-layout>
     <x-nav-bar :user="$user" />
-    <div class="grid grid-cols-6 gap-10">
-        <div class="col-span-2">
+    <div class="p-1 flex flex-col justify-center lg:flex-row">
+        <div class="hidden lg:block mx-auto">
             <x-login-user-face />
         </div>
-        <div class="col-span-2">
+        <div class="xl:w-1/2">
             @foreach($logs as $log)
-            <div class="p-3 my-2 max-w-md rounded overflow-hidden shadow-lg">
+            <div class="p-3 my-2 rounded overflow-hidden shadow-lg w-max-md lg:w-2/3 xl:w-full mx-auto">
                 <x-card :log="$log" :user="$user" />
                 <x-comment-modal :log="$log" />
             </div>
             @endforeach
         </div>
-        <div class="col-span-2">
+        <div class="order-first lg:order-last mx-auto">
             <x-search-bar />
         </div>
     </div>

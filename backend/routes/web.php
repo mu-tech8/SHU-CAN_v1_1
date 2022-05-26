@@ -32,7 +32,7 @@ Route::prefix('logs')->name('logs.')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('/users', UserController::class)->only(['index', 'show', 'edit', 'update', 'store']);
+    Route::resource('/users', UserController::class)->only(['show', 'edit', 'update', 'store']);
     // フォロー/フォロー解除を追加
     Route::post('users/{user}/follow', [UserController::class, 'follow'])->name('follow');
     Route::delete('users/{user}/unfollow', [UserController::class, 'unfollow'])->name('unfollow');

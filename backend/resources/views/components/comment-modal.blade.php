@@ -16,11 +16,11 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <div class="p-6 pt-0 text-center">
+            <div class="p-2 pt-0 text-center text-sm">
                 <form method="POST" action="{{ route('comments.store') }}">
                     @csrf
-                    <div class="w-96 mx-auto">
-                        <div class="ml-10 mb-4">
+                    <div class="w-48 md:w-64 lg:w-80 mx-auto">
+                        <div class="mb-4">
                             返信先：<span class="text-gray-500 font-bold">{{ $log->user->name }}</span>
                         </div>
                         <div class="text-xs p-2 border mb-2">
@@ -28,11 +28,10 @@
                         </div>
                         <input type="hidden" name="log_id" value="{{ $log->id }}">
                         <textarea
-                            class="p-6 mx-auto w-64 appearance-none block bg-gray-200 text-gray-700 border border-red-500 rounded leading-tight focus:outline-none focus:bg-white "
-                            name="body" id="body" rows="4" placeholder=""></textarea>
+                            class="w-48 mx-auto bg-gray-200 text-gray-700 appearance-none border border-red-500 rounded leading-tight focus:outline-none focus:bg-white "
+                            name="body" id="body" rows="8"></textarea>
                     </div>
-                    <div
-                        class="mx-auto w-40 text-center text-xl text-white dark:text-gray-500 bg-amber-400 rounded-full p-3 my-4">
+                    <div class="mx-auto w-40 text-white dark:text-gray-500 bg-amber-400 rounded-full p-3 my-4">
                         <button type="submit">コメントする</button>
                     </div>
                 </form>

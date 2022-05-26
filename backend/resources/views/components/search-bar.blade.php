@@ -1,4 +1,4 @@
-<div class="pt-2 relative mx-auto text-gray-600 ">
+<div class="pt-2 relative text-gray-600 ">
     <form method="POST" action="{{ route('logs.search') }}">
         @csrf
         <input class="border-2 border-gray-300 bg-white h-10 w-64 px-5 pr-16 rounded-lg text-sm focus:outline-none"
