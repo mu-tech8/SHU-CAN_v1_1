@@ -2,10 +2,10 @@
     <div>
         <a href="{{ route('users.show', ['user' => Auth::user()->id]) }}" class="text-gray-500">
             @if(!isset(Auth::user()->profile_image))
-            <img src="/images/noimage.png" class="float-left rounded-full p-1 mr-6" width="80" height="80">
+            <img src="/images/noimage.png" class="float-left rounded-full w-28 h-24 p-1 mr-2">
             @else
-            <img src="/storage/{{ Auth::user()->profile_image }}" class="float-left rounded-full p-1 mr-4" width="80"
-                height="80">
+            <img src="data:profile_image/png;base64,<?= Auth::user()->profile_image ?>"
+                class="float-left rounded-full w-24 h-24 p-1 mr-4">
             @endif
         </a>
     </div>

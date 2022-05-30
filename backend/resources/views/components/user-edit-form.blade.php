@@ -4,10 +4,12 @@
             class="block mx-auto text-gray-700 mt-4 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-1 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             type="button" data-modal-toggle="popup-image-modal">
             @if(!isset($user->profile_image))
-            <img src="/images/noimage.png" class="float-left rounded-full  p-1 mr-4" width="100" height="100">
+            <img src="/images/noimage.png" class="float-left rounded-full w-32 h-32 p-1 mr-4">
             @else
-            <img src="/storage/{{$user->profile_image}}" class="float-left rounded-full  p-1 mr-4" width="100"
-                height="100">
+            {{-- <img src="/storage/{{$user->profile_image}}" class="float-left rounded-full p-1 mr-4" width="100"
+            height="100"> --}}
+            <img src="data:profile_image/png;base64,<?= $user->profile_image ?>"
+                class="float-left rounded-full w-32 h-32 p-1 mr-4">
             @endif
         </button>
         <x-edit-profile-image-modal :user="$user" />

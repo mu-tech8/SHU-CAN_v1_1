@@ -1,5 +1,8 @@
 <x-app-layout>
     <x-nav-bar />
+    <div class="hidden xl:block mx-auto">
+        <x-login-user-face :user="$user" />
+    </div>
     <div
         class="flex lg:max-w-xl mx-auto rounded overflow-hidden shadow-lg border-2 border-gray-400 border-solid p-4 my-8 w-full justify-center">
         <form class="w-full ml-2" method="POST" action="{{ route('logs.store') }}">

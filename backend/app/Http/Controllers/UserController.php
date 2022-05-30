@@ -11,13 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    // public function index(User $user)
-    // {
-    //     $users = User::all()->sortByDesc('created_at');
-
-    //     return view('users.index', compact('users'));
-    // }
-
     public function show(User $user, Log $log)
     {
         $user = User::with(['logs.goodjobs'])->where('id', $user->id)->first();
@@ -32,7 +25,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('users.edit', compact('user'));
+        $profile_image = $user->profile_image;
+        return view('users.edit', compact('user', 'profile_image'));
     }
 
     public function update(UserRequest $request, User $user)
@@ -76,10 +70,12 @@ class UserController extends Controller
 
     public function updateImage(Request $request, User $user)
     {
-        $file_name = $request->profile_image->getClientOriginalName();
-        $img = isset($file_name) ? $request->profile_image->storeAs("", $file_name, 'public') : '';
-        User::where('id', Auth::user()->id)->update(['profile_image' => $img]);
-        return redirect()->route('users.show', ['user' => Auth::user()->id]);
+        $profile_image = base64_encode(file_get_contents($request->profile_image->getRealPath()));
+        User::where('id', Auth::user()->id)->update(["profile_image" => $profile_image]);
+        // $file_name = $request->profile_image->getClientOriginalName();
+        // $img = isset($file_name) ? $request->profile_image->storeAs("", $file_name, 'public') : '';
+        // User::where('id', Auth::user()->id)->update(['profile_image' => $img]);
+        return redirect()->route('users.edit', ['user' => Auth::user()->id])->with(compact('profile_image'));
     }
 
     public function showGraph(Request $request, User $user)

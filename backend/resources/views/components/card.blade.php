@@ -5,10 +5,10 @@
     <div>
         <a href="{{ route('users.show', ['user' => $log->user_id]) }}" class="text-gray-500">
             @if(!isset($log->user->profile_image))
-            <img src="/images/noimage.png" class="float-left rounded-full p-1 mr-6" width="80" height="80">
+            <img src="/images/noimage.png" class="float-left rounded-full w-32 h-32 p-1 mr-6">
             @else
-            <img src="/storage/{{$log->user->profile_image}}" class="float-left rounded-full p-1 mr-4" width="80"
-                height="80">
+            <img src="data:profile_image/png;base64,<?= $log->user->profile_image ?>"
+                class="float-left rounded-full w-32 h-32 p-1 mr-4">
             @endif
         </a>
     </div>
