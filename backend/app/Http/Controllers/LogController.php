@@ -33,7 +33,8 @@ class LogController extends Controller
 
     public function create(Log $log)
     {
-        return view('logs.create', compact('log'));
+        $user = Auth::user();
+        return view('logs.create', compact('log', 'user'));
     }
 
     public function store(LogRequest $request, Log $log)

@@ -9,10 +9,10 @@
                 class="p-3 my-2 rounded overflow-hidden shadow-lg w-max-md lg:w-2/3 lg:w-full lg:mx-auto text-gray-500">
                 <a href="{{ route('users.show', ['user' => $user->id]) }}" class="text-gray-500">
                     @if(!isset($user->profile_image))
-                    <img src="/images/noimage.png" class="float-left rounded-full  p-1 mr-4" width="100" height="100">
+                    <img src="/images/noimage.png" class="float-left rounded-full w-32 h-32 p-1 mr-4">
                     @else
-                    <img src="/storage/{{$user->profile_image}}" class="float-left rounded-full  p-1 mr-4" width="100"
-                        height="100">
+                    <img src="data:profile_image/png;base64,<?= $user->profile_image ?>"
+                        class="float-left rounded-full w-32 h-32 p-1 mr-4">
                     @endif
                     <div class="my-2 ml-2">
                         <p class="mb-0">{{ $user->name }}</p>

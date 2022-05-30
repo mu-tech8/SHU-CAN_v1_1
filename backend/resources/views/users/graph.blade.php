@@ -24,7 +24,7 @@
                     </ul>
                     <div class="tab-content tab-space　mt-6">
                         <div class="block" id="tab-monthly">
-                            <canvas id="monthlyLearnTimeChart" width="1100" height="500"></canvas>
+                            <canvas id="monthlyLearnTimeChart" width="1050" height="450"></canvas>
                             <script>
                                 const monthly_ctx = document.getElementById('monthlyLearnTimeChart');
                                     const monthly_labels = @json($monthly_labels);
@@ -85,7 +85,7 @@
                             </script>
                         </div>
                         <div class="hidden" id="tab-daily">
-                            <canvas id="dailyLearnTimeChart" width="1100" height="500"></canvas>
+                            <canvas id="dailyLearnTimeChart" width="1050" height="450"></canvas>
                             <script>
                                 const daily_ctx = document.getElementById('dailyLearnTimeChart');
                                 const daily_labels = @json($daily_labels);
