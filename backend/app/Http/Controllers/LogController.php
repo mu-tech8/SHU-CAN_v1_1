@@ -48,7 +48,8 @@ class LogController extends Controller
 
     public function edit(Log $log)
     {
-        return view('logs.edit', compact('log'));
+        $user = Auth::user();
+        return view('logs.edit', compact('log', 'user'));
     }
 
     public function update(LogRequest $request, Log $log)

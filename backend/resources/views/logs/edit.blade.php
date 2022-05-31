@@ -1,13 +1,17 @@
 <x-app-layout>
     <x-nav-bar />
-    <div class="rounded overflow-hidden shadow-lg border-1 border-solid p-2 my-8 w-full">
-        <form method="POST" action="{{ route('logs.update', ['log' => $log->id]) }}" class="xl:w-2/3 mx-auto">
+    <div class="hidden xl:block mx-auto">
+        <x-login-user-face :user="$user" />
+    </div>
+    <div
+        class="flex lg:max-w-xl mx-auto rounded overflow-hidden shadow-lg border-2 border-gray-400 border-solid p-4 my-8 w-full justify-center">
+        <form method="POST" action="{{ route('logs.update', ['log' => $log->id]) }}" class="w-full ml-2">
             @method('PATCH')
             @csrf
             <x-form :log="$log" />
-            <div
-                class="ml-auto w-32 text-center text-xl text-white dark:text-gray-500 bg-amber-400 rounded-full p-3 my-4">
-                <button type="submit">更新する</button>
+            <div class="ml-auto mr-0 w-32 text-center p-2 my-4">
+                <button type="submit"
+                    class="focus:outline-none text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:focus:ring-yellow-900">投稿</button>
             </div>
         </form>
     </div>
