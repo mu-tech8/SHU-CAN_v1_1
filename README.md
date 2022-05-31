@@ -1,57 +1,76 @@
-# docker-laravel 🐳
+# SHU-CAN
 
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/35098175/145682384-0f531ede-96e0-44c3-a35e-32494bd9af42.png" alt="docker-laravel">
-</p>
-<p align="center">
-    <img src="https://github.com/ucan-lab/docker-laravel/actions/workflows/laravel-create-project.yml/badge.svg" alt="Test laravel-create-project.yml">
-    <img src="https://github.com/ucan-lab/docker-laravel/actions/workflows/laravel-git-clone.yml/badge.svg" alt="Test laravel-git-clone.yml">
-    <img src="https://img.shields.io/github/license/ucan-lab/docker-laravel" alt="License">
+    <img width="1440" alt="スクリーンショット 2022-05-31 11 47 46" src="https://user-images.githubusercontent.com/63633583/171083119-f0220c4f-da86-408a-9212-f8e1b979c528.png" alt="top view">
 </p>
 
-## Introduction
+## アプリの概要
 
-Build a simple laravel development environment with docker-compose. Compatible with Windows(WSL2), macOS(M1) and Linux.
+エンジニアのための学習習慣づくり SNS
 
-## Usage
+## 開発背景
 
-1. Click [Use this template](https://github.com/ucan-lab/docker-laravel/generate)
-2. Git clone & change directory
-3. Execute the following command
+私は職業を転々とするなど、なかなか物事を継続できないという弱みがありました。
+一心発起して、公認会計士を目指すも 1 年で挫折した経験があります。
+しかし、ある本を読んで、思考や意思を言語化することの重要性にきづきました。
+そして web エンジニアになろうと決心した時から、習慣にしたい行動を言語化、記録することによって、
+自分の行動を管理することができました。この記録を続けたことにより、学習や読書、運動の習慣が身につきました。
 
-```bash
-$ make create-project # Install the latest Laravel project
-$ make install-recommend-packages # Optional
-```
+1. この習慣をつくる体験をあらゆる人に届けたい
+2. メモよりも簡単かつより効果的に習慣を継続させる仕組みを作りたい
+3. 中でも学習の継続が必須とされるプログラミング学習の習慣づくりに特化し、
+   　　全ての学び続けるプログラマーを対象にした SNS コミュニティを作りたい
 
-http://localhost
+## 使用技術
 
-## Tips
+■ フロントエンド
+　 HTML/CSS/JS/Tailwind.css
+■ バックエンド
+　 Laravel(v8.83.2) PHP(v7.3.29)
+■ 開発環境
+　 Docker、docker-compose、MySQL
+■ コード管理
+　 Git,GitHub
+開発期間：約 3 ヶ月
 
-- Read this [Makefile](https://github.com/ucan-lab/docker-laravel/blob/main/Makefile).
-- Read this [Wiki](https://github.com/ucan-lab/docker-laravel/wiki).
+##　機能一覧
 
-## Container structures
+投稿機能
+　・コメント機能
+　・グッジョブ機能（いいね機能）
+　・投稿編集機能
+　・投稿一覧表示機能
+　・投稿削除機能
+　・投稿検索機能
+ログイン＆ログアウト機能
+　・Laravel Breeze により実装
+マイページ
+　・編集機能(アイコン画像あり)
+　・表示機能
+フォロー・フォロワー機能
+学習実績グラフの表示機能
 
-```bash
-├── app
-├── web
-└── db
-```
+今後の実装予定
+・言語・技術のハッシュタグ機能
+・メールアドレス認証
+・投稿時間の UI 改善
+・グッジョブボタンとフォローボタン改善
+・通知機能
+・ダイレクトメッセージ機能
 
 ### app container
 
-- Base image
-  - [php](https://hub.docker.com/_/php):8.1-fpm-bullseye
-  - [composer](https://hub.docker.com/_/composer):2.1
+-   Base image
+    -   [php](https://hub.docker.com/_/php):8.1-fpm-bullseye
+    -   [composer](https://hub.docker.com/_/composer):2.1
 
 ### web container
 
-- Base image
-  - [nginx](https://hub.docker.com/_/nginx):1.20-alpine
-  - [node](https://hub.docker.com/_/node):16-alpine
+-   Base image
+    -   [nginx](https://hub.docker.com/_/nginx):1.20-alpine
+    -   [node](https://hub.docker.com/_/node):16-alpine
 
 ### db container
 
-- Base image
-  - [mysql/mysql-server](https://hub.docker.com/r/mysql/mysql-server):8.0
+-   Base image
+    -   [mysql/mysql-server](https://hub.docker.com/r/mysql/mysql-server):8.0
