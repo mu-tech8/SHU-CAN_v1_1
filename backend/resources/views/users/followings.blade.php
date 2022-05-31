@@ -11,8 +11,8 @@
                     @if(!isset($following->profile_image))
                     <img src="/images/noimage.png" class="float-left rounded-full  p-1 mr-4" width="100" height="100">
                     @else
-                    <img src="/storage/{{$following->profile_image}}" class="float-left rounded-full  p-1 mr-4"
-                        width="100" height="100">
+                    <img src="data:profile_image/png;base64,<?= $following->profile_image ?>"
+                        class="float-left rounded-full w-24 h-24 p-1 mr-4">
                     @endif
                     <div class="my-2 ml-2">
                         <p class="mb-0">{{ $following->name }}</p>
