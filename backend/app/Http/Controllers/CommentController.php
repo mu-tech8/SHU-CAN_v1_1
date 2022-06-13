@@ -18,6 +18,7 @@ class CommentController extends Controller
         $comment->log_id = $request->log_id;
         $comment->user_id = Auth::user()->id;
         $comment->save();
+        $request->session()->regenerateToken();
         return redirect()->route('logs.show', ['log' => $request->log_id]);
     }
 
