@@ -42,6 +42,7 @@ class LogController extends Controller
         $log->fill($request->all());
         $log->user_id = $request->user()->id;
         $log->save();
+        $request->session()->regenerateToken();
         return redirect()->route('logs.index');
     }
 
